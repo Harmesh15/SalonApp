@@ -12,7 +12,7 @@ const verifyToken = async (req,res,next)=>{
   console.log(token);
   try{
 
-     const decoded = jwt.verify(token,"harmesh15");
+     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     req.user = decoded
     next();
@@ -23,7 +23,7 @@ const verifyToken = async (req,res,next)=>{
 };
 
 const isAdmin = (req, res, next) => {
-
+  console.log("is admin controller hit");
     const token = req.headers.authorization.split(" ")[1];
 
       if (!token) {
@@ -32,7 +32,7 @@ const isAdmin = (req, res, next) => {
 
   console.log(token);
 
-     const decoded = jwt.verify(token,"harmesh15");
+     const decoded = jwt.verify(token,process.env.JWT_SECRET);
      req.user = decoded
 
   if (req.user && req.user.role === 'admin') {

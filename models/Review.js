@@ -18,11 +18,11 @@ const reviews = sequelize.define("reviews",{
     },
     rating:{
         type: DataTypes.DECIMAL(10,2),
-        allowNull:false
+        allowNull:true
     },
     review:{
         type:DataTypes.STRING,
-        allowNull:false
+        allowNull:true
     },
     staffReply:{
         type:DataTypes.INTEGER,

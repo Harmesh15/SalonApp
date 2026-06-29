@@ -13,9 +13,7 @@ const createService = async (req,res)=>{
             duration_minutes:duration_minutes,
             price:price
         })
-
         res.status(201).json({message:"services created"});
-    
     }catch(error){
         console.log(error);
     }
@@ -82,7 +80,8 @@ const setServiceAvailability = async (req,res)=>{
        });
 
        console.log(isAvailable);
-       if(isAvailable){
+
+       if(!isAvailable){
         await availability.update({
             start_time, end_time, is_available
         },{where:{ service_id,day_of_week}});

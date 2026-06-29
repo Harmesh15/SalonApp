@@ -11,14 +11,15 @@ const addStaff = async (req, res) => {
         const { name, email, specialization,phone,availability } = req.body;
 
         if (!name || !email) {
-            return res.status(400).json({ message: 'Name and Email are required' });
+            return res.status(400).json({ message:'Name and Email are required' });
         }
-
+       
+        console.log(phone);
         const newSatff = await staff.create({
             name,
             email,
             specialization,
-            phone,
+            phone
         })
 
         return res.status(201).json({ message: "Staff profile created successfully", staff: newSatff });

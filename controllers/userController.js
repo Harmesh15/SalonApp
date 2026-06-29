@@ -59,7 +59,7 @@ const login = async (req, res) => {
             userId: isuser.id,
             role:isuser.role
          },
-             "harmesh15",
+            process.env.JWT_SECRET,
          { expiresIn: "1h" }
         );
 

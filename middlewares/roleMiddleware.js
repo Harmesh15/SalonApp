@@ -9,7 +9,7 @@ const roleMiddleWare = async (req,res,next)=>{
         return res.status(401).json({message:"Access Denied: No Token Provided"});
     }
 
-    const decode = jwt.verify(token,"harmesh15");
+    const decode = jwt.verify(token,process.env.JWT_SECRET);
 
     if(!decode){
         return res.status(400).json({message:"token invalid"});
