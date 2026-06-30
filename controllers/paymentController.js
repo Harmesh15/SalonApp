@@ -118,7 +118,6 @@ const verifyPayment = async (req,res)=>{
       booking.status = 'confirmed'; // Ya aap 'completed/paid' rakhna chahein toh
       await booking.save();
 
-    
     await payment.create({
         appointmentId: booking.id,
         userId: booking.userId,
@@ -128,14 +127,6 @@ const verifyPayment = async (req,res)=>{
         paymentMode: 'ONLINE',
         paymentDate: new Date()
       });  
-
-
-
-
-
-
-
- 
 
       const invoiceFilename = `Invoice_${booking.id}.pdf`;
       const pdfPath = await generateInvoice(booking, invoiceFilename);

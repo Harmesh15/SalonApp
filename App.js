@@ -15,6 +15,7 @@ const bookingRouter = require("./routes/appointmentRoutes");
 const appointmentManagement = require("./routes/appointmentManagementRoute");
 const paymentRoutes = require("./routes/paymentRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const adminRouter = require("./routes/adminRoutes");
 
 app.use(express.json());
 app.use(express.static("public"));
@@ -27,6 +28,7 @@ app.use("/apointment",bookingRouter);
 app.use("/mangeApt",appointmentManagement);
 app.use("/payment",paymentRoutes);
 app.use("/review",reviewRouter);
+app.use("/admin",adminRouter);
 
 
 const PORT = 8000;

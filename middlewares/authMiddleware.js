@@ -22,7 +22,7 @@ const verifyToken = async (req,res,next)=>{
   }
 };
 
-const isAdmin = (req, res, next) => {
+const staffAdmin = (req, res, next) => {
   console.log("is admin controller hit");
     const token = req.headers.authorization.split(" ")[1];
 
@@ -42,7 +42,32 @@ const isAdmin = (req, res, next) => {
   }
 };
 
+
+const isAdmin = (req, res, next) => {
+  console.log("is admin controller hit");
+    const token = req.headers.authorization.split(" ")[1];
+
+      if (!token) {
+    return res.status(401).json({ message: "No token provided" });
+  }
+
+  console.log(token);
+
+     const decoded = jwt.verify(token,process.env.JWT_SECRET);
+     req.user = decoded
+
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    return res.status(403).json({ message: 'Access Denied: Admins Only!' });
+  }
+};
+
+
+
+
 module.exports = {
   verifyToken,
-  isAdmin
+  isAdmin,
+  staffAdmin
 };
