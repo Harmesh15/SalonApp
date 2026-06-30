@@ -14,12 +14,11 @@ const staffRouter = require("./routes/staffRoutes");
 const bookingRouter = require("./routes/appointmentRoutes");
 const appointmentManagement = require("./routes/appointmentManagementRoute");
 const paymentRoutes = require("./routes/paymentRoutes");
-
+const reviewRouter = require("./routes/reviewRoutes");
 
 app.use(express.json());
 app.use(express.static("public"));
 app.use(cors());
-
 
 app.use("/user",userRouter);
 app.use("/service",serviceRouter);
@@ -27,6 +26,8 @@ app.use("/staff",staffRouter);
 app.use("/apointment",bookingRouter);
 app.use("/mangeApt",appointmentManagement);
 app.use("/payment",paymentRoutes);
+app.use("/review",reviewRouter);
+
 
 const PORT = 8000;
 

@@ -12,23 +12,30 @@ const payment = sequelize.define("payment",{
         type:DataTypes.INTEGER,
         allowNull:false
     },
+    userId:{
+         type:DataTypes.INTEGER,
+         allowNull:false
+    },
     amount:{
         type: DataTypes.DECIMAL(10,2),
         allowNull:false
     },
-    paymentMethod:{
+    paymentStatus:{
         type:DataTypes.STRING,
         allowNullL:false
     },
     transactionId:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.STRING,
         allowNull:false
     },
-    status:{
-        type:DataTypes.INTEGER,
+    paymentMode:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    paymentDate:{
+        type:DataTypes.DATE,
         allowNull:false
     }
-
 })
 
 module.exports = payment;

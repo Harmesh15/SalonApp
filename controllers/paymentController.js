@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { appointments, user, services } = require('../models/index');
+const { appointments, user, services,payment } = require('../models/index');
 const generateInvoice = require('../utils/invoiceGenerator');
 const sendEmail = require('../utils/sendEmail');
 const path = require('path');
@@ -117,6 +117,24 @@ const verifyPayment = async (req,res)=>{
 
       booking.status = 'confirmed'; // Ya aap 'completed/paid' rakhna chahein toh
       await booking.save();
+
+    
+    await payment.create({
+        appointmentId: booking.id,
+        userId: booking.userId,
+        amount: booking.services ? booking.services.price : booking.service.price,
+        paymentStatus: 'SUCCESS', // Ya 'PAID'
+        transactionId: order_id, // Cashfree ki order_id ko hum transactionId bana rahe hain
+        paymentMode: 'ONLINE',
+        paymentDate: new Date()
+      });  
+
+
+
+
+
+
+
  
 
       const invoiceFilename = `Invoice_${booking.id}.pdf`;

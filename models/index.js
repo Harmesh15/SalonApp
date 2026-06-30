@@ -31,6 +31,9 @@ payment.belongsTo(appointments);
 appointments.hasOne(reviews);
 reviews.belongsTo(appointments);
 
+user.hasMany(reviews, { foreignKey: 'userId' });
+reviews.belongsTo(user, { foreignKey: 'userId' });
+
 module.exports = {
     user,appointments,services,status,staff,staffServices,reviews,payment,availability,
 }
